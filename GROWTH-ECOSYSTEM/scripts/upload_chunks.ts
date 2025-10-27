@@ -28,7 +28,7 @@ async function main() {
   }
   const raw = JSON.parse(fs.readFileSync(file, "utf-8"));
   const sb = createClient(url, key);
-  const titles = [...new Set(raw.map((r: any) => r.document_title))];
+  const titles: string[] = [...new Set(raw.map((r: any) => r.document_title as string))];
   const docMap: Record<string, string> = {};
   for (const t of titles) {
     const { data, error } = await sb
