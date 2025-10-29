@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --bg: #ffffff;
-  --fg: #0b1020;
+  --bg: #020204;
+  --fg: #e6eef8;
+  --muted: #9aa6bd;
+  --accent: #7C3AED; /* electric purple */
+  --accent-2: #00C6FF; /* cyan */
 }
 
 html,
@@ -14,5 +17,18 @@ body {
 
 body {
   color: var(--fg);
-  background: var(--bg);
+  background: radial-gradient(1200px at 10% 10%, rgba(124,58,237,0.06), transparent 20%), radial-gradient(900px at 90% 0%, rgba(0,198,255,0.04), transparent 30%), var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.accent-blob {
+  filter: blur(28px);
+  opacity: 0.9;
 }

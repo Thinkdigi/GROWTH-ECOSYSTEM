@@ -1,4 +1,5 @@
 import "./globals.css";
+import { type ReactNode } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
@@ -10,10 +11,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fi">
       <body className="min-h-screen flex flex-col">
-        <NavBar />
-        <main className="flex-1">{children}</main>
+  <NavBar />
+        <div className="pt-16 flex-1">{children}</div>
         <Footer />
       </body>
     </html>
