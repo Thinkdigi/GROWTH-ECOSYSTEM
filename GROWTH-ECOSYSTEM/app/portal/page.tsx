@@ -16,6 +16,7 @@ export default function Portal() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    if (!supabase) return;
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => setSession(session));
     return () => {
@@ -25,6 +26,10 @@ export default function Portal() {
 
   const signIn = async () => {
     if (!email) return;
+    if (!supabase) {
+      alert("Supabase not configured");
+      return;
+    }
     await supabase.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: window.location.origin + "/portal" },
@@ -32,7 +37,7 @@ export default function Portal() {
     alert("Magic link sent. Check your email.");
   };
 
-  const signOut = () => supabase.auth.signOut();
+  const signOut = () => supabase?.auth?.signOut?.();
 
   if (!session) {
     return (

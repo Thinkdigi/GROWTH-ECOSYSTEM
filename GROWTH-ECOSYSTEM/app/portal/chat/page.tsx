@@ -18,6 +18,7 @@ export default function InvestorChat() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
 
   useEffect(() => {
+    if (!supabase) return; // supabase may be null during static builds
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => setSession(session));
     return () => {
@@ -45,7 +46,7 @@ export default function InvestorChat() {
     }
   };
 
-  const signOut = () => supabase.auth.signOut();
+  const signOut = () => supabase?.auth?.signOut?.();
 
   if (!session) {
     return (

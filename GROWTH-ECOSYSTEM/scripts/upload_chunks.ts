@@ -26,7 +26,7 @@ async function main() {
     console.error("Usage: ts-node scripts/upload_chunks.ts <chunks.json>");
     process.exit(1);
   }
-  const raw = JSON.parse(fs.readFileSync(file, "utf-8"));
+  const raw: any[] = JSON.parse(fs.readFileSync(file, "utf-8"));
   const sb = createClient(url, key);
   const titles: string[] = [...new Set(raw.map((r: any) => r.document_title as string))];
   const docMap: Record<string, string> = {};
